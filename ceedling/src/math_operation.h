@@ -4,5 +4,6 @@
 
 int add(int a, int b);
 int subtract(int a, int b);
+int multply(int a, int b);
 
 #endif // MATH_OPERATIONS_H
