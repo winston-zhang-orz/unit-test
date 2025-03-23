@@ -26,19 +26,6 @@ jobs:
       - name: Install Ceedling
         run: gem install ceedling
 
-      - name: Detect changed source files
-        id: changed-files
-        run: |
-          changed_files=$(git diff --name-only HEAD^ HEAD | grep '\.c$')
-          echo "::set-output name=changed_files::$changed_files"
-
-      - name: Generate unit tests for changed files
-        if: steps.changed-files.outputs.changed_files != ''
-        run: |
-          for file in ${{ steps.changed-files.outputs.changed_files }}; do
-            ceedling new:test --source=$file
-          done
-
       - name: Generate and run all unit tests
         run: cd ceedling && ceedling test:all
 
